@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "466638353799",
+    "project_id": "gameplay-modular",
+    "storage_bucket": "gameplay-modular.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466638353799:android:1f73c352c776d53b880f22",
+        "android_client_info": {
+          "package_name": "com.example.gameplay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466638353799-ud06c7nhilcl6d1d6mcnfrkmvj25u8pq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gameplay",
+            "certificate_hash": "2a8bd8867efd535e55e0c99d7edfc8a4d3f8cacd"
+          }
+        },
+        {
+          "client_id": "466638353799-1pijo9h3029hseij41060v2vnj59s3oj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwBRG3pU3tBsUeLDm5TQIcaShbf9sKG1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466638353799-1pijo9h3029hseij41060v2vnj59s3oj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
