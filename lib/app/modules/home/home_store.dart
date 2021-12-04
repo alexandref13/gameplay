@@ -1,14 +1,19 @@
+import 'package:gameplay/app/modules/login/models/user_model.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
 
-class HomeStore = HomeStoreBase with _$HomeStore;
+class HomeStore = _HomeStoreBase with _$HomeStore;
 
-abstract class HomeStoreBase with Store {
+abstract class _HomeStoreBase with Store {
+  final UserModel user;
   @observable
-  int counter = 0;
+  String name = '';
 
-  Future<void> increment() async {
-    counter = counter + 1;
+  @observable
+  String photoUrl = '';
+
+  _HomeStoreBase(this.user) {
+    name = '';
   }
 }
