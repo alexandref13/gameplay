@@ -8,10 +8,6 @@ class LoginStore = _LoginStoreBase with _$LoginStore;
 abstract class _LoginStoreBase with Store {
   AuthController auth = Modular.get();
 
-  @observable
-  bool loading = false;
-
-  @action
   Future<void> loginWithGoogle() async {
     try {
       await auth.loginWithGoogle();
