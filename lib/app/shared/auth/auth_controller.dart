@@ -16,16 +16,23 @@ abstract class _AuthControllerBase with Store {
   setUser(User value) => user = value;
 
   _AuthControllerBase() {
-    _authRepository.getUser().then((value) => setUser(value));
+    _authRepository.getUser().then((value) {
+      if (value != null) {
+        setUser(value);
+        Modular.to.pushReplacementNamed('/home/');
+      }
+    });
   }
 
   @action
   Future loginWithGoogle() async {
     user = await _authRepository.getGoogleLogin();
+    Modular.to.pushReplacementNamed('/home/');
   }
 
   @action
-  Future logOut() {
-    return _authRepository.getLogout();
+  Future logOut() async {
+    await _authRepository.getLogout();
+    Modular.to.pushReplacementNamed('/');
   }
 }

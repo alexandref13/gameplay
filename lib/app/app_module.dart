@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gameplay/app/modules/home/home_module.dart';
+import 'package:gameplay/app/modules/schedule/schedule_module.dart';
 import 'package:gameplay/app/shared/auth/auth_controller.dart';
 import 'package:gameplay/app/shared/auth/repositories/auth_repository.dart';
 import 'package:gameplay/app/shared/auth/repositories/auth_repository_interface.dart';
@@ -17,5 +18,6 @@ class AppModule extends Module {
   final List<ModularRoute> routes = [
     ModuleRoute(Modular.initialRoute, module: LoginModule()),
     ModuleRoute('/home', module: HomeModule()),
+    ModuleRoute('/schedule', module: ScheduleModule()),
   ];
 }

@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gameplay/app/modules/login/login_store.dart';
 import 'package:flutter/material.dart';
+import 'package:gameplay/app/shared/auth/auth_controller.dart';
 import 'package:gameplay/app/theme/app_images.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  final LoginStore store = Modular.get();
+  final AuthController authController = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -55,26 +55,12 @@ class LoginPageState extends State<LoginPage> {
                 ),
               ),
               Positioned(
-                top: MediaQuery.of(context).size.height * .76,
-                left: 55,
-                right: 60,
-                child: Text(
-                  'Crie grupos para jogar seus games\n favoritos com seus amigos',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
-                    color: Color(0xffDDE3F0),
-                  ),
-                ),
-              ),
-              Positioned(
                 top: MediaQuery.of(context).size.height * .82,
                 left: 70,
                 right: 60,
                 child: SocialLoginButton(
                   onTap: () {
-                    // store.googleSignIn();
+                    authController.loginWithGoogle();
                   },
                 ),
               ),

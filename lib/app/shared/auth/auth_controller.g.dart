@@ -32,6 +32,13 @@ mixin _$AuthController on _AuthControllerBase, Store {
     return _$loginWithGoogleAsyncAction.run(() => super.loginWithGoogle());
   }
 
+  final _$logOutAsyncAction = AsyncAction('_AuthControllerBase.logOut');
+
+  @override
+  Future<dynamic> logOut() {
+    return _$logOutAsyncAction.run(() => super.logOut());
+  }
+
   final _$_AuthControllerBaseActionController =
       ActionController(name: '_AuthControllerBase');
 
@@ -41,17 +48,6 @@ mixin _$AuthController on _AuthControllerBase, Store {
         name: '_AuthControllerBase.setUser');
     try {
       return super.setUser(value);
-    } finally {
-      _$_AuthControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  Future<dynamic> logOut() {
-    final _$actionInfo = _$_AuthControllerBaseActionController.startAction(
-        name: '_AuthControllerBase.logOut');
-    try {
-      return super.logOut();
     } finally {
       _$_AuthControllerBaseActionController.endAction(_$actionInfo);
     }

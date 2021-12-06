@@ -15,8 +15,13 @@ class TextStyles {
     color: AppColors.heading,
   );
   static final heading24 = GoogleFonts.rajdhani(
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: FontWeight.bold,
+    color: AppColors.heading,
+  );
+  static final heading24Medium = GoogleFonts.rajdhani(
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
     color: AppColors.heading,
   );
   static final heading18 = GoogleFonts.rajdhani(

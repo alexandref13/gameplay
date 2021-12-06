@@ -4,33 +4,35 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository implements IAuthRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth? _auth = FirebaseAuth.instance;
 
   @override
   Future<User> getGoogleLogin() async {
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
+      accessToken: googleAuth!.accessToken,
       idToken: googleAuth.idToken,
     );
 
-    final User? user = (await _auth.signInWithCredential(credential)).user;
+    final User? user = (await _auth!.signInWithCredential(credential)).user;
 
     return user!;
   }
 
   @override
-  Future<User> getUser() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    return user!;
+  Future getUser() async {
+    User? user;
+    if (_auth!.currentUser != null) {
+      user = _auth!.currentUser;
+      return user!;
+    }
   }
 
   @override
-  Future<User> getLogout() async {
-    await _auth.signOut();
-    throw UnimplementedError();
+  Future getLogout() async {
+    await _auth!.signOut();
   }
 }
