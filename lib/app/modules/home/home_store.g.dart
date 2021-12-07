@@ -9,41 +9,39 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on _HomeStoreBase, Store {
-  final _$nameAtom = Atom(name: '_HomeStoreBase.name');
+  final _$todoListAtom = Atom(name: '_HomeStoreBase.todoList');
 
   @override
-  String get name {
-    _$nameAtom.reportRead();
-    return super.name;
+  ObservableStream<List<HomeModel>>? get todoList {
+    _$todoListAtom.reportRead();
+    return super.todoList;
   }
 
   @override
-  set name(String value) {
-    _$nameAtom.reportWrite(value, super.name, () {
-      super.name = value;
+  set todoList(ObservableStream<List<HomeModel>>? value) {
+    _$todoListAtom.reportWrite(value, super.todoList, () {
+      super.todoList = value;
     });
   }
 
-  final _$photoUrlAtom = Atom(name: '_HomeStoreBase.photoUrl');
+  final _$_HomeStoreBaseActionController =
+      ActionController(name: '_HomeStoreBase');
 
   @override
-  String get photoUrl {
-    _$photoUrlAtom.reportRead();
-    return super.photoUrl;
-  }
-
-  @override
-  set photoUrl(String value) {
-    _$photoUrlAtom.reportWrite(value, super.photoUrl, () {
-      super.photoUrl = value;
-    });
+  dynamic getList() {
+    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
+        name: '_HomeStoreBase.getList');
+    try {
+      return super.getList();
+    } finally {
+      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     return '''
-name: ${name},
-photoUrl: ${photoUrl}
+todoList: ${todoList}
     ''';
   }
 }

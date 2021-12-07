@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gameplay/app/modules/home/models/home_model.dart';
 import 'package:gameplay/app/modules/schedule/schedule_store.dart';
 import 'package:flutter/material.dart';
 import 'package:gameplay/app/modules/schedule/widget/input_text/input_text.dart';
@@ -138,7 +139,13 @@ class SchedulePageState extends State<SchedulePage> {
                   Color(0xffE51C44),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                HomeModel? model;
+                model ??= HomeModel();
+
+                await model.save();
+                Modular.to.pop();
+              },
               child: Text(
                 'Agendar',
                 style: TextStyles.text15,

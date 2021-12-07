@@ -4,7 +4,6 @@ import 'package:gameplay/app/modules/schedule/schedule_module.dart';
 import 'package:gameplay/app/shared/auth/auth_controller.dart';
 import 'package:gameplay/app/shared/auth/repositories/auth_repository.dart';
 import 'package:gameplay/app/shared/auth/repositories/auth_repository_interface.dart';
-
 import 'modules/login/login_module.dart';
 
 class AppModule extends Module {
