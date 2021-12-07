@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:gameplay/app/modules/home/models/home_model.dart';
 import 'package:gameplay/app/modules/home/repositories/home_repository_interface.dart';
 import 'package:mobx/mobx.dart';
@@ -15,6 +16,24 @@ abstract class _HomeStoreBase with Store {
   _HomeStoreBase(IHomeRepository this.repository) {
     getList();
   }
+
+  @observable
+  TextEditingController title = TextEditingController();
+
+  @observable
+  TextEditingController description = TextEditingController();
+
+  @observable
+  TextEditingController day = TextEditingController();
+
+  @observable
+  TextEditingController mouth = TextEditingController();
+
+  @observable
+  TextEditingController hour = TextEditingController();
+
+  @observable
+  TextEditingController minute = TextEditingController();
 
   @action
   getList() {

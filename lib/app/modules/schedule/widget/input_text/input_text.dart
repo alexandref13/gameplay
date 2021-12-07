@@ -3,7 +3,8 @@ import 'package:gameplay/app/theme/app_colors.dart';
 import 'package:gameplay/app/theme/app_text_styles.dart';
 
 class InputTextWidget extends StatelessWidget {
-  const InputTextWidget({Key? key}) : super(key: key);
+  final TextEditingController controller;
+  const InputTextWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class InputTextWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
+        controller: controller,
         maxLength: 2,
         keyboardType: TextInputType.number,
         style: TextStyles.text15,

@@ -7,7 +7,11 @@ class HomeRepository implements IHomeRepository {
 
   @override
   Stream<List<HomeModel>> getList() {
-    return firestore.collection('games').snapshots().map((event) {
+    return firestore
+        .collection('games')
+        .orderBy('position')
+        .snapshots()
+        .map((event) {
       return event.docs.map((e) {
         return HomeModel.fromDocument(e);
       }).toList();
