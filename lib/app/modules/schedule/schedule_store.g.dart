@@ -54,21 +54,6 @@ mixin _$ScheduleStore on _ScheduleStoreBase, Store {
     });
   }
 
-  final _$fileNameAtom = Atom(name: '_ScheduleStoreBase.fileName');
-
-  @override
-  String get fileName {
-    _$fileNameAtom.reportRead();
-    return super.fileName;
-  }
-
-  @override
-  set fileName(String value) {
-    _$fileNameAtom.reportWrite(value, super.fileName, () {
-      super.fileName = value;
-    });
-  }
-
   final _$pickFileAsyncAction = AsyncAction('_ScheduleStoreBase.pickFile');
 
   @override
@@ -95,8 +80,7 @@ mixin _$ScheduleStore on _ScheduleStoreBase, Store {
     return '''
 file: ${file},
 url: ${url},
-task: ${task},
-fileName: ${fileName}
+task: ${task}
     ''';
   }
 }

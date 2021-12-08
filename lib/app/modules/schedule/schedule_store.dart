@@ -1,13 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gameplay/app/modules/home/home_store.dart';
 import 'package:gameplay/app/modules/home/models/home_model.dart';
 import 'package:gameplay/app/modules/schedule/repository/schedule_repository.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:mobx/mobx.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-import 'package:file_picker/file_picker.dart';
+
 part 'schedule_store.g.dart';
 
 class ScheduleStore = _ScheduleStoreBase with _$ScheduleStore;
@@ -15,6 +17,7 @@ class ScheduleStore = _ScheduleStoreBase with _$ScheduleStore;
 abstract class _ScheduleStoreBase with Store {
   final HomeStore homeStore = Modular.get();
 
+  ImagePicker image = ImagePicker();
   @observable
   File? file;
 
@@ -24,18 +27,46 @@ abstract class _ScheduleStoreBase with Store {
   @observable
   UploadTask? task;
 
-  @observable
-  String fileName = 'No File Selected';
-
   @action
   pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      allowMultiple: false,
-    );
+    final result = await image.pickImage(source: ImageSource.gallery);
     if (result != null) {
-      final path = result.files.single.path!;
-      file = File(path);
-      fileName = file != null ? basename(file!.path) : 'No File Selected';
+      file = File(result.path);
+
+      File? croppedFile = await ImageCropper.cropImage(
+        sourcePath: file!.path,
+        aspectRatioPresets: Platform.isAndroid
+            ? [
+                CropAspectRatioPreset.square,
+                CropAspectRatioPreset.ratio3x2,
+                CropAspectRatioPreset.original,
+                CropAspectRatioPreset.ratio4x3,
+                CropAspectRatioPreset.ratio16x9
+              ]
+            : [
+                CropAspectRatioPreset.original,
+                CropAspectRatioPreset.square,
+                CropAspectRatioPreset.ratio3x2,
+                CropAspectRatioPreset.ratio4x3,
+                CropAspectRatioPreset.ratio5x3,
+                CropAspectRatioPreset.ratio5x4,
+                CropAspectRatioPreset.ratio7x5,
+                CropAspectRatioPreset.ratio16x9
+              ],
+        androidUiSettings: AndroidUiSettings(
+          toolbarTitle: 'Cropper',
+          toolbarColor: Colors.deepOrange,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false,
+        ),
+        iosUiSettings: IOSUiSettings(
+          title: 'Cropper',
+        ),
+      );
+      if (croppedFile != null) {
+        file = croppedFile;
+      }
     }
   }
 
@@ -85,6 +116,8 @@ abstract class _ScheduleStoreBase with Store {
       homeStore.minute.text = '';
 
       Modular.to.pop();
+    } else {
+      return '0';
     }
   }
 }
