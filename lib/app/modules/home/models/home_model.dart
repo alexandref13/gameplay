@@ -60,7 +60,7 @@ class HomeModel {
     }
   }
 
-  Future delete() async {
+  Future delete(DocumentReference<Object?>? reference) async {
     return reference!.delete();
   }
 }

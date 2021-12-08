@@ -23,15 +23,6 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future getUser() async {
-    User? user;
-    if (_auth!.currentUser != null) {
-      user = _auth!.currentUser;
-      return user!;
-    }
-  }
-
-  @override
   Future getLogout() async {
     await _auth!.signOut();
   }

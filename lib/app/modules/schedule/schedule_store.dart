@@ -8,7 +8,6 @@ import 'package:mobx/mobx.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 
 part 'schedule_store.g.dart';
 
@@ -16,10 +15,13 @@ class ScheduleStore = _ScheduleStoreBase with _$ScheduleStore;
 
 abstract class _ScheduleStoreBase with Store {
   final HomeStore homeStore = Modular.get();
-
   ImagePicker image = ImagePicker();
+
   @observable
   File? file;
+
+  @observable
+  ScheduleStatus? status;
 
   @observable
   String? url;
@@ -94,13 +96,17 @@ abstract class _ScheduleStoreBase with Store {
     var date =
         '${homeStore.day.text}/${homeStore.mouth.text} ${homeStore.hour.text}:${homeStore.minute.text}';
 
-    await uploadFile();
+    if (homeStore.title.text.isNotEmpty &&
+        homeStore.description.text.isNotEmpty &&
+        homeStore.day.text.isNotEmpty &&
+        homeStore.mouth.text.isNotEmpty &&
+        homeStore.hour.text.isNotEmpty &&
+        homeStore.minute.text.isNotEmpty &&
+        file != null) {
+      status = ScheduleStatus.loading;
 
-    if (homeStore.title.text != '' ||
-        homeStore.description.text != '' ||
-        date != ' / :' ||
-        file != null ||
-        task != null) {
+      await uploadFile();
+
       await model.save(
         title: homeStore.title.text,
         description: homeStore.description.text,
@@ -116,8 +122,15 @@ abstract class _ScheduleStoreBase with Store {
       homeStore.minute.clear();
 
       Modular.to.pop();
+
+      status = ScheduleStatus.done;
     } else {
       return '0';
     }
   }
+}
+
+enum ScheduleStatus {
+  loading,
+  done,
 }

@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gameplay/app/modules/details/details_module.dart';
+import 'package:gameplay/app/modules/details/details_store.dart';
 import 'package:gameplay/app/modules/home/home_module.dart';
 import 'package:gameplay/app/modules/home/home_store.dart';
 import 'package:gameplay/app/modules/home/repositories/home_repository.dart';
@@ -17,6 +19,7 @@ class AppModule extends Module {
     Bind<IHomeRepository>((i) => HomeRepository()),
     Bind((i) => AuthController()),
     Bind((i) => HomeStore(i.get())),
+    Bind((i) => DetailsStore()),
   ];
 
   @override
@@ -25,5 +28,6 @@ class AppModule extends Module {
     ModuleRoute('/login', module: LoginModule()),
     ModuleRoute('/home', module: HomeModule()),
     ModuleRoute('/schedule', module: ScheduleModule()),
+    ModuleRoute('/details', module: DetailsModule()),
   ];
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
+import 'package:gameplay/app/modules/details/details_store.dart';
 import 'package:gameplay/app/modules/home/home_store.dart';
 import 'package:gameplay/app/modules/home/models/home_model.dart';
 import 'package:gameplay/app/shared/auth/auth_controller.dart';
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   final AuthController authController = Modular.get();
   final HomeStore controller = Modular.get();
+  final detailsController = Modular.get<DetailsStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +34,18 @@ class HomePageState extends State<HomePage> {
                 padding: EdgeInsets.symmetric(vertical: 20),
                 child: Row(
                   children: [
-                    Container(
-                      height: 48,
-                      width: 48,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        image: DecorationImage(
-                          image: NetworkImage(authController.user!.photoURL!),
+                    GestureDetector(
+                      onTap: () {
+                        authController.logOut();
+                      },
+                      child: Container(
+                        height: 48,
+                        width: 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: DecorationImage(
+                            image: NetworkImage(authController.user!.photoURL!),
+                          ),
                         ),
                       ),
                     ),
@@ -122,9 +129,18 @@ class HomePageState extends State<HomePage> {
                     var newList = list[i];
 
                     return ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        detailsController.title = newList.title;
+                        detailsController.url = newList.url;
+                        detailsController.description = newList.description;
+                        detailsController.reference = newList.reference;
+                        Modular.to.pushNamed('/details/');
+                      },
                       leading: Image.network(
                         newList.url,
+                        fit: BoxFit.fill,
+                        width: 90,
+                        height: 90,
                       ),
                       title: Text(
                         newList.title,

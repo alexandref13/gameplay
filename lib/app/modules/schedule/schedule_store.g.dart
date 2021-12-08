@@ -24,6 +24,21 @@ mixin _$ScheduleStore on _ScheduleStoreBase, Store {
     });
   }
 
+  final _$statusAtom = Atom(name: '_ScheduleStoreBase.status');
+
+  @override
+  ScheduleStatus? get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(ScheduleStatus? value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
+    });
+  }
+
   final _$urlAtom = Atom(name: '_ScheduleStoreBase.url');
 
   @override
@@ -79,6 +94,7 @@ mixin _$ScheduleStore on _ScheduleStoreBase, Store {
   String toString() {
     return '''
 file: ${file},
+status: ${status},
 url: ${url},
 task: ${task}
     ''';

@@ -9,6 +9,7 @@ class HomeModule extends Module {
   final List<Bind> binds = [
     Bind((i) => HomeStore(i.get())),
     Bind<IHomeRepository>((i) => HomeRepository()),
+    Bind((i) => HomeStore(i.get())),
   ];
 
   @override

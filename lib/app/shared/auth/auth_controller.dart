@@ -16,25 +16,35 @@ abstract class _AuthControllerBase with Store {
   User? user;
 
   @action
-  setUser(User value) {
-    user = value;
-    status = user == null ? AuthStatus.logoff : AuthStatus.login;
+  getUser() {
+    FirebaseAuth.instance.authStateChanges().listen(
+      (User? newUser) {
+        if (newUser == null) {
+          status = AuthStatus.logoff;
+        } else {
+          user = newUser;
+          status = AuthStatus.login;
+        }
+      },
+    );
   }
 
   _AuthControllerBase() {
-    _authRepository.getUser().then((value) => setUser(value));
+    getUser();
   }
 
   @action
   Future loginWithGoogle() async {
+    status = AuthStatus.loading;
     user = await _authRepository.getGoogleLogin();
     Modular.to.pushReplacementNamed('/home/');
+    status = AuthStatus.login;
   }
 
   @action
   Future logOut() async {
     await _authRepository.getLogout();
-    Modular.to.pushReplacementNamed('/');
+    Modular.to.pushReplacementNamed('/login/');
   }
 }
 
