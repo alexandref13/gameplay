@@ -6,7 +6,6 @@ import 'package:gameplay/app/modules/home/models/home_model.dart';
 import 'package:gameplay/app/shared/auth/auth_controller.dart';
 import 'package:gameplay/app/theme/app_colors.dart';
 import 'package:gameplay/app/theme/app_text_styles.dart';
-import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -116,87 +115,55 @@ class HomePageState extends State<HomePage> {
                 List<HomeModel> list = controller.todoList!.data;
 
                 return ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: list.length,
-                    itemBuilder: (_, i) {
-                      var newList = list[i];
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: list.length,
+                  itemBuilder: (_, i) {
+                    var newList = list[i];
 
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          padding: EdgeInsets.only(top: 24),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Container(
-                              //   width: 70,
-                              //   height: 70,
-                              //   child: Image.network(
-                              //     'https://yt3.ggpht.com/a8do10Of8KHQMj-mhkcYj88IjBDdBZ1Fd7oy1D1H1ohDWOfSLUigPEeDyUsYhesVdK51N5DSoAM=s900-c-k-c0x00ffffff-no-rj',
-                              //   ),
-                              // ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * .768,
-                                padding: EdgeInsets.only(top: 2),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.only(bottom: 4),
-                                      child: Text(
-                                        newList.title,
-                                        style: TextStyles.heading18,
-                                      ),
-                                    ),
-                                    Container(
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.date_range_outlined,
-                                            size: 16,
-                                            color: Color(0xffE51C44),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.only(left: 12),
-                                            child: Text(
-                                              newList.date,
-                                              style: TextStyles.text13,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Divider(
-                                      thickness: 1,
-                                      endIndent: 1,
-                                      color: AppColors.shapeBoxes,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 30,
-                                height: 30,
-                                margin: EdgeInsets.only(right: 24),
-                                decoration: BoxDecoration(
-                                  color: Color(0xffE51C44),
-                                  borderRadius: BorderRadius.circular(
-                                    10,
-                                  ),
-                                ),
-                                child: Icon(
-                                  Icons.arrow_forward_ios_outlined,
-                                  size: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
+                    return ListTile(
+                      onTap: () {},
+                      leading: Image.network(
+                        newList.url,
+                      ),
+                      title: Text(
+                        newList.title,
+                        style: TextStyles.heading18,
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Icon(
+                            Icons.date_range_outlined,
+                            size: 16,
+                            color: Color(0xffE51C44),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 12),
+                            child: Text(
+                              newList.date,
+                              style: TextStyles.text13,
+                            ),
+                          ),
+                        ],
+                      ),
+                      trailing: Container(
+                        width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: Color(0xffE51C44),
+                          borderRadius: BorderRadius.circular(
+                            10,
                           ),
                         ),
-                      );
-                    });
+                        child: Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    );
+                  },
+                );
               })
             ],
           ),
@@ -205,3 +172,64 @@ class HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+// GestureDetector(
+//                         onTap: () {},
+//                         child: Container(
+//                           decoration: BoxDecoration(
+//                             border: Border(
+//                               bottom: BorderSide(
+//                                 width: .5,
+//                                 color: AppColors.body,
+//                               ),
+//                             ),
+//                           ),
+//                           padding: EdgeInsets.only(top: 24, bottom: 10),
+//                           child: Row(
+//                             children: [
+//                               Container(
+//                                 width: 80,
+//                                 height: 80,
+//                                 child: Image.network(newList.url),
+//                               ),
+//                               Container(
+//                                 width: MediaQuery.of(context).size.width * .5,
+//                                 padding: EdgeInsets.only(top: 2),
+//                                 child: Column(
+//                                   crossAxisAlignment:
+//                                       CrossAxisAlignment.stretch,
+//                                   children: [
+//                                     Container(
+//                                       padding: EdgeInsets.only(bottom: 4),
+//                                       child: Text(
+//                                         newList.title,
+//                                         style: TextStyles.heading18,
+//                                       ),
+// //                                     ),
+//                                     Container(
+//                                       child: Row(
+//                                         children: [
+//                                           Icon(
+//                                             Icons.date_range_outlined,
+//                                             size: 16,
+//                                             color: Color(0xffE51C44),
+//                                           ),
+//                                           Container(
+//                                             padding: EdgeInsets.only(left: 12),
+//                                             child: Text(
+//                                               newList.date,
+//                                               style: TextStyles.text13,
+//                                             ),
+//                                           ),
+//                                         ],
+//                                       ),
+                                    // ),
+//                                   ],
+//                                 ),
+//                               ),
+                            
+//                             ],
+//                           ),
+//                         ),
+//                       );

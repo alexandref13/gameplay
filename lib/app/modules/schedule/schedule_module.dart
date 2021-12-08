@@ -1,3 +1,5 @@
+import 'package:gameplay/app/modules/schedule/repository/schedule_repository.dart';
+import 'package:gameplay/app/modules/schedule/repository/schedule_repository_interface.dart';
 import 'package:gameplay/app/modules/schedule/schedule_Page.dart';
 import 'package:gameplay/app/modules/schedule/schedule_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -5,7 +7,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 class ScheduleModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => ScheduleStore()),
+    Bind((i) => ScheduleStore()),
+    Bind<IScheduleRepository>((i) => ScheduleRepository()),
   ];
 
   @override
