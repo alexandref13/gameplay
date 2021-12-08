@@ -108,12 +108,12 @@ abstract class _ScheduleStoreBase with Store {
         url: url,
       );
 
-      homeStore.title.text = '';
-      homeStore.description.text = '';
-      homeStore.day.text = '';
-      homeStore.mouth.text = '';
-      homeStore.hour.text = '';
-      homeStore.minute.text = '';
+      homeStore.title.clear();
+      homeStore.description.clear();
+      homeStore.day.clear();
+      homeStore.mouth.clear();
+      homeStore.hour.clear();
+      homeStore.minute.clear();
 
       Modular.to.pop();
     } else {

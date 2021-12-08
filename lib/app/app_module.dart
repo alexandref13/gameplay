@@ -4,6 +4,7 @@ import 'package:gameplay/app/modules/home/home_store.dart';
 import 'package:gameplay/app/modules/home/repositories/home_repository.dart';
 import 'package:gameplay/app/modules/home/repositories/home_repository_interface.dart';
 import 'package:gameplay/app/modules/schedule/schedule_module.dart';
+import 'package:gameplay/app/modules/splash/splash_module.dart';
 import 'package:gameplay/app/shared/auth/auth_controller.dart';
 import 'package:gameplay/app/shared/auth/repositories/auth_repository.dart';
 import 'package:gameplay/app/shared/auth/repositories/auth_repository_interface.dart';
@@ -20,7 +21,8 @@ class AppModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ModuleRoute(Modular.initialRoute, module: LoginModule()),
+    ModuleRoute(Modular.initialRoute, module: SplashModule()),
+    ModuleRoute('/login', module: LoginModule()),
     ModuleRoute('/home', module: HomeModule()),
     ModuleRoute('/schedule', module: ScheduleModule()),
   ];
