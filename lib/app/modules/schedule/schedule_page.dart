@@ -261,9 +261,12 @@ class SchedulePageState extends State<SchedulePage> {
                           ),
                         ),
                         Container(
+                          margin: EdgeInsets.only(top: 12),
                           width: MediaQuery.of(context).size.width,
                           height: 56,
-                          padding: EdgeInsets.symmetric(horizontal: 24),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 24,
+                          ),
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(

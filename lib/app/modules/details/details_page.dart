@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gameplay/app/modules/details/alert/delete_alert_widget.dart';
+import 'package:gameplay/app/modules/details/widgets/alert/delete_alert_widget.dart';
 import 'package:gameplay/app/modules/home/models/home_model.dart';
 import 'package:gameplay/app/theme/app_colors.dart';
 import 'package:gameplay/app/theme/app_text_styles.dart';
@@ -9,7 +9,6 @@ import 'details_store.dart';
 
 class DetailsPage extends StatelessWidget {
   final DetailsStore controller = Modular.get();
-  final HomeModel homeModel = HomeModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +24,7 @@ class DetailsPage extends StatelessWidget {
               deleteAlert(
                 context: context,
                 text: 'Você quer mesmo excluir seu jogo agendado?',
-                function: () {
-                  homeModel.delete(controller.reference);
-                  Modular.to.pop();
-                },
+                function: controller.deleteSchedule,
               );
             },
             icon: Icon(

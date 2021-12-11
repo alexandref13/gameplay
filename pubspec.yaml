@@ -25,6 +25,7 @@ dependencies:
   image_cropper: ^1.4.1
   image_picker: ^0.8.4+4
   rflutter_alert: ^2.0.4
+  animated_card: ^2.0.0
 
 dev_dependencies:
   flutter_test:
