@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gameplay/app/modules/details/widgets/alert/delete_alert_widget.dart';
-import 'package:gameplay/app/modules/home/models/home_model.dart';
 import 'package:gameplay/app/theme/app_colors.dart';
 import 'package:gameplay/app/theme/app_text_styles.dart';
 
@@ -40,7 +39,10 @@ class DetailsPage extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * .3,
-            child: Image.network(controller.url!),
+            child: Image.network(
+              controller.url!,
+              fit: BoxFit.fill,
+            ),
           ),
           Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),

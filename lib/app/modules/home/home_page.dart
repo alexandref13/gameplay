@@ -140,7 +140,7 @@ class HomePageState extends State<HomePage> {
                     return AnimatedCard(
                       direction: AnimatedCardDirection.left,
                       initDelay: Duration(
-                        seconds: 2,
+                        milliseconds: 1200,
                       ), //Delay to initial animation
                       child: ListTile(
                         onTap: () {
@@ -150,11 +150,18 @@ class HomePageState extends State<HomePage> {
                           detailsController.reference = newList.reference;
                           Modular.to.pushNamed('/details/');
                         },
-                        leading: Image.network(
-                          newList.url,
-                          fit: BoxFit.fill,
-                          width: 90,
-                          height: 90,
+                        leading: Container(
+                          height: 80,
+                          width: 68,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: NetworkImage(
+                                newList.url,
+                              ),
+                            ),
+                          ),
                         ),
                         title: Text(
                           newList.title,
