@@ -33,10 +33,8 @@ abstract class _ScheduleStoreBase with Store {
   pickFile() async {
     final result = await image.pickImage(source: ImageSource.gallery);
     if (result != null) {
-      file = File(result.path);
-
       File? croppedFile = await ImageCropper.cropImage(
-        sourcePath: file!.path,
+        sourcePath: result.path,
         aspectRatioPresets: Platform.isAndroid
             ? [
                 CropAspectRatioPreset.square,
