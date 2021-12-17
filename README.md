@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Gameplay" src=".github/thumbnail.png">
+  ![cover](.github/thumbnail.png?style=flat)
 </p>
 
 <h2 align="center">Tópicos 📋</h2>
